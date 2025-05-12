@@ -1,5 +1,7 @@
 <div 
-class="bg-white p-4 pt-1 rounded-1g shadow-sm border border-gray-200 hover:border-black cursor-pointer">
+class="bg-white p-4 pt-1 rounded-1g shadow-sm border border-gray-200 hover:border-black cursor-pointer"
+[class]="formService.selectedField()?.id === field().id ? '!border-black':''"
+(click)="formService.setSelectedField(field().id)">
 
 <div class="flex items-center justify-between mb-1"> 
     <span class="text-sm">{{ field().type | titlecase }}</span> 
@@ -7,9 +9,6 @@ class="bg-white p-4 pt-1 rounded-1g shadow-sm border border-gray-200 hover:borde
     <mat-icon class="-mr-2">delete</mat-icon> 
     </button> 
     </div>
-<ng-container 
-[ngComponentOutlet]="previewComponent()" 
-[ngComponentOutletInputs]="{ field: field()}" 
-></ng-container>
+<app-field-preview  [field]="field()"/>
 
 </div>
